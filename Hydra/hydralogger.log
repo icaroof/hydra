@@ -1,0 +1,5 @@
+Hydra webserver.go:13: Starting Hydra web service
+Hydra webserver.go:28: Received an http GET request from raiseShield url
+Hydra webserver.go:23: Received an http GET request from root url
+Hydra webserver.go:28: Received an http GET request from raiseShield url
+Hydra webserver.go:23: Received an http GET request from root url
