@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Hydra/hydrachat"
+	"hydra/hydrachat"
 )
 
 func main() {
