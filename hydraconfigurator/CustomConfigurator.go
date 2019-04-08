@@ -10,9 +10,10 @@ import (
 	"strings"
 )
 
+//ConfigFields to reflect fields
 type ConfigFields map[string]reflect.Value
 
-func (f ConfigFields) Add(name, value, t string) error {
+func (f ConfigFields) add(name, value, t string) error {
 	switch t {
 	case "STRING":
 		f[name] = reflect.ValueOf(value)
@@ -45,7 +46,7 @@ func (f ConfigFields) Add(name, value, t string) error {
 	return nil
 }
 
-func MarshalCustomConfig(v reflect.Value, filename string) error {
+func marshalCustomConfig(v reflect.Value, filename string) error {
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Println("Panic ocurred on marshalling", r)
@@ -81,7 +82,7 @@ func MarshalCustomConfig(v reflect.Value, filename string) error {
 
 		name, value, vType := strings.TrimSpace(args[0]), strings.TrimSpace(args[1]), strings.ToUpper(strings.TrimSpace(args[2]))
 
-		fields.Add(name, value, vType)
+		fields.add(name, value, vType)
 	}
 
 	if err := scanner.Err(); err != nil {

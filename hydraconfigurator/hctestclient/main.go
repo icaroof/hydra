@@ -2,19 +2,40 @@ package main
 
 import (
 	"fmt"
-	"hydra/hydraconfigurator"
+
+	"github.com/icaroof/hydra/hydraconfigurator"
 )
 
-type ConfS struct {
-	TS      string  `name:"testString"`
-	TB      bool    `name:"testBool"`
-	TF      float64 `name:"testFloat"`
+//ConfStruct default struct to file conversion
+type ConfStruct struct {
+	TS      string  `name:"testString" xml:"testString" json:"testString"`
+	TB      bool    `name:"testBool" xml:"testBool" json:"testBool"`
+	TF      float64 `name:"testFloat" xml:"testFloat" json:"testFloat"`
 	TestInt int
 }
 
 func main() {
-	configStruct := new(ConfS)
+	testConfStructFromCustomFile()
+	testConfStructFromJSONFile()
+}
+
+func testConfStructFromCustomFile() {
+	fmt.Println("Testing from Custom file")
+	configStruct := new(ConfStruct)
 	hydraconfigurator.GetConfiguration(hydraconfigurator.CUSTOM, configStruct, "configfile.conf")
+
+	printStructData(configStruct)
+}
+
+func testConfStructFromJSONFile() {
+	fmt.Println("Testing from JSON file")
+	configStruct := new(ConfStruct)
+	hydraconfigurator.GetConfiguration(hydraconfigurator.JSON, configStruct, "configfile.json")
+
+	printStructData(configStruct)
+}
+
+func printStructData(configStruct *ConfStruct) {
 	fmt.Println(*configStruct)
 
 	fmt.Println("bool is", configStruct.TB)
@@ -24,4 +45,5 @@ func main() {
 	fmt.Println(5 * configStruct.TestInt)
 
 	fmt.Println(configStruct.TS)
+	fmt.Println("#####################################")
 }
