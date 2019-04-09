@@ -36,6 +36,8 @@ func GetConfiguration(confType int8, obj interface{}, filename string) (err erro
 		err = marshalCustomConfig(objRValue, filename)
 	case JSON:
 		err = decodeJSONConfig(obj, filename)
+	case XML:
+		err = decodeXMLConfig(obj, filename)
 	}
 
 	return

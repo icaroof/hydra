@@ -17,6 +17,7 @@ type ConfStruct struct {
 func main() {
 	testConfStructFromCustomFile()
 	testConfStructFromJSONFile()
+	testConfStructFromXMLFile()
 }
 
 func testConfStructFromCustomFile() {
@@ -31,6 +32,14 @@ func testConfStructFromJSONFile() {
 	fmt.Println("Testing from JSON file")
 	configStruct := new(ConfStruct)
 	hydraconfigurator.GetConfiguration(hydraconfigurator.JSON, configStruct, "configfile.json")
+
+	printStructData(configStruct)
+}
+
+func testConfStructFromXMLFile() {
+	fmt.Println("Testing from XML file")
+	configStruct := new(ConfStruct)
+	hydraconfigurator.GetConfiguration(hydraconfigurator.XML, configStruct, "configfile.xml")
 
 	printStructData(configStruct)
 }

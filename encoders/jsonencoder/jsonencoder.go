@@ -32,7 +32,7 @@ func SerializeStruct() {
 	defer f.Close()
 
 	cm := CrewMember{Name: "Jaro", SecurityClearance: 10, AccessCodes: []string{"ADA", "LAL"}}
-	si := ShipInfo{1, "Fighter", cm}
+	si := ShipInfo{ShipID: 1, ShipClass: "Fighter", Captain: cm}
 
 	err = json.NewEncoder(f).Encode(&si)
 	PrintFatalError(err)
